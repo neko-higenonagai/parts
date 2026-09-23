@@ -1,0 +1,9 @@
+*.bat -text
+*.cmd -text
+*.gd text eol=lf
+*.tscn text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.glb binary
+*.png binary
+*.gif binary

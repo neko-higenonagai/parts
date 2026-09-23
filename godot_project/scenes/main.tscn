@@ -1,0 +1,861 @@
+[gd_scene format=3 uid="uid://c08v1ug36k8u2"]
+
+[ext_resource type="Script" uid="uid://w4ias7as4q88" path="res://scripts/ui_controller.gd" id="1_ui"]
+[ext_resource type="Script" uid="uid://b7bw47uj2ne8s" path="res://scripts/orbit_camera.gd" id="2_orbit_camera"]
+[ext_resource type="Script" uid="uid://ce6mgb50teufm" path="res://scripts/assembly_importer.gd" id="3_assembly_importer"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky01"]
+
+[sub_resource type="Sky" id="Sky_sky01"]
+sky_material = SubResource("ProceduralSkyMaterial_sky01")
+
+[sub_resource type="Environment" id="Environment_env01"]
+background_mode = 2
+sky = SubResource("Sky_sky01")
+ambient_light_source = 2
+ambient_light_color = Color(0.85, 0.85, 0.9, 1)
+ambient_light_energy = 0.4
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+size = Vector2(20, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_title"]
+content_margin_left = 6.0
+content_margin_top = 3.0
+content_margin_right = 6.0
+content_margin_bottom = 3.0
+bg_color = Color(0.15, 0.15, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.8)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vis"]
+
+[node name="Main" type="Node3D" unique_id=2006219293]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1149542643]
+environment = SubResource("Environment_env01")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=951185606]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.5, 0.8)
+fov = 60.0
+script = ExtResource("2_orbit_camera")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=315088282]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 0)
+shadow_enabled = true
+
+[node name="GroundPlane" type="MeshInstance3D" parent="." unique_id=1977326135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="Assembly" type="Node3D" parent="." unique_id=1402491999]
+script = ExtResource("3_assembly_importer")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=2043276465]
+
+[node name="UIPanel" type="Control" parent="UILayer" unique_id=241757359]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 340.0
+grow_vertical = 2
+script = ExtResource("1_ui")
+
+[node name="PanelBg" type="Panel" parent="UILayer/UIPanel" unique_id=543826301]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UIPanel" unique_id=1640785697]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UILayer/UIPanel/MarginContainer" unique_id=987654321]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxOuter" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer" unique_id=70391277]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="TitleHBox" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=827720370]
+layout_mode = 2
+
+[node name="TitleLabelContainer" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TitleHBox" unique_id=827720378]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TitleHBox/TitleLabelContainer" unique_id=827720377]
+layout_mode = 2
+text = "HGNN-Parts"
+
+[node name="VersionLabel" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TitleHBox/TitleLabelContainer" unique_id=827720379]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.72, 0.85, 0.8)
+theme_override_font_sizes/font_size = 12
+text = "v0.0.1"
+
+[node name="BtnMinimizeMenu" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TitleHBox" unique_id=827720371]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "メニューを最小化 (M)"
+text = "◀ 最小化"
+
+[node name="Sep1" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=113473794]
+layout_mode = 2
+
+[node name="TscnList" type="ItemList" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=293847162]
+visible = false
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PartList" type="ItemList" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=613597628]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 0
+select_mode = 1
+
+[node name="CreatedPartList" type="ItemList" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=1916313709]
+visible = false
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 0
+select_mode = 1
+
+[node name="LblSelectedPartName" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=1476195526]
+unique_name_in_owner = true
+layout_mode = 2
+text = "選択: なし (クリックで選択)"
+
+[node name="SepListOps" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=81511213]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=1461623194]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="ファイル" type="ScrollContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer" unique_id=204977952]
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル" unique_id=204977954]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="OpsBoxFile" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer" unique_id=204977953]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="SaveContainer" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=706259346]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LineEditSaveName" type="LineEdit" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/SaveContainer" unique_id=445494954]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "base"
+
+[node name="LblSuffix" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/SaveContainer" unique_id=108877890]
+layout_mode = 2
+text = ".tscn"
+
+[node name="BtnSaveConfig" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/SaveContainer" unique_id=324910259]
+unique_name_in_owner = true
+layout_mode = 2
+text = "保存"
+
+[node name="TscnOpsContainer" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=706259347]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnRenameTscn" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/TscnOpsContainer" unique_id=706259348]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "✏️ 名前変更"
+
+[node name="BtnDeleteTscn" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/TscnOpsContainer" unique_id=706259349]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🗑️ 削除"
+
+[node name="SepFile1" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=81923746]
+layout_mode = 2
+
+[node name="BtnExportGLB" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=1650543876]
+unique_name_in_owner = true
+layout_mode = 2
+text = "💾 GLB出力 (アニメ付)"
+
+[node name="BtnExportViewer" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=97709056]
+unique_name_in_owner = true
+layout_mode = 2
+text = "🌐 HTMLビューア出力"
+
+[node name="SepFile2" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=81923747]
+layout_mode = 2
+
+[node name="HBoxModelLoad" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=1668106748]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnLoadModel" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/HBoxModelLoad" unique_id=324910261]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📁 GLB読込"
+
+[node name="BtnAddModel" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/HBoxModelLoad" unique_id=2030961471]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "➕ GLB追加"
+
+[node name="SepFile3" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=81923748]
+layout_mode = 2
+
+[node name="PlaybackContainer2" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=818434136]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnPlay2" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/PlaybackContainer2" unique_id=1988928233]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶ 再生"
+
+[node name="BtnPause2" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/PlaybackContainer2" unique_id=468703431]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⏸ 一時停止"
+
+[node name="BtnReset2" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/PlaybackContainer2" unique_id=977840586]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🔄 リセット"
+
+[node name="BtnAllReset2" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=1403204600]
+unique_name_in_owner = true
+layout_mode = 2
+text = "オールリセット"
+
+[node name="SepFile4" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=81923749]
+layout_mode = 2
+
+[node name="BtnClearAll" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=1403204601]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "作業空間の全モデルおよび【作成】タブのモデル（パーツ）をすべて削除して初期化します"
+text = "🗑️ モデルをすべて削除"
+
+[node name="StatusContainer2" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile" unique_id=2075646002]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblStatus2" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/ファイル/MarginContainer/OpsBoxFile/StatusContainer2" unique_id=1955932283]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ステータス: 停止中"
+
+[node name="配置" type="ScrollContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer" unique_id=1216675756]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置" unique_id=1216675757]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="OpsBox" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer" unique_id=1689114322]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="HBoxVis" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=214095005]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnPartOpaque" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxVis" unique_id=631763488]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vis")
+text = "表示"
+
+[node name="BtnPartTransparent" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxVis" unique_id=943696275]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vis")
+text = "半透明"
+
+[node name="BtnPartHidden" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxVis" unique_id=901531090]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vis")
+text = "非表示"
+
+[node name="HBoxCopyDelete" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=981273410]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnCopyPart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxCopyDelete" unique_id=819203810]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "📋 コピー"
+
+[node name="BtnDeletePart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxCopyDelete" unique_id=819203811]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "🗑️ 削除"
+
+[node name="BtnUndoDeletePart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxCopyDelete" unique_id=819203812]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "↩ 戻す"
+
+[node name="SepPlacement1" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=81923750]
+layout_mode = 2
+
+[node name="HBoxPartName" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=981273413]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxPartName" unique_id=981273414]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "名前:"
+
+[node name="LineEditPartName" type="LineEdit" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxPartName" unique_id=981273415]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnRenamePart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxPartName" unique_id=981273416]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "✏️ 変更"
+
+[node name="HBoxPartColor" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=981273417]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxPartColor" unique_id=981273418]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "カラー:"
+
+[node name="ColorPickerPart" type="ColorPickerButton" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox/HBoxPartColor" unique_id=981273419]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="SepPlacement2" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=81923751]
+layout_mode = 2
+
+[node name="ContainerPartPos" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=1476195527]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ContainerPartRot" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=1476195533]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ContainerPartScale" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/配置/MarginContainer/OpsBox" unique_id=568682125]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="動作" type="ScrollContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer" unique_id=324910243]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作" unique_id=324910244]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="OpsBox" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer" unique_id=36064649]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="CheckMotionPingPong" type="CheckBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=324910251]
+unique_name_in_owner = true
+layout_mode = 2
+text = "往復動作（なし）"
+
+[node name="HBoxMotionType" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=324910245]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxMotionType" unique_id=324910246]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "動作種類:"
+
+[node name="OptionMotionType" type="OptionButton" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxMotionType" unique_id=324910247]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 3
+popup/item_0/text = "動作なし"
+popup/item_0/id = 0
+popup/item_1/text = "回転運動"
+popup/item_1/id = 1
+popup/item_2/text = "直線運動"
+popup/item_2/id = 2
+
+[node name="HBoxDuration" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=324910248]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxDuration" unique_id=324910249]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "周期(秒):"
+
+[node name="SpinMotionDuration" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxDuration" unique_id=324910250]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 60.0
+step = 0.1
+value = 2.0
+
+[node name="SepMotion1" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=81923752]
+layout_mode = 2
+
+[node name="HBoxMotionRange" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=324910252]
+layout_mode = 2
+
+[node name="LblMotionMin" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxMotionRange" unique_id=324910253]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "移動範囲:"
+
+[node name="SpinMotionParamMin" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxMotionRange" unique_id=324910254]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -100000.0
+max_value = 100000.0
+step = 0.01
+
+[node name="LblTilde" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxMotionRange" unique_id=324910256]
+layout_mode = 2
+text = "~"
+
+[node name="SpinMotionParamMax" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxMotionRange" unique_id=324910257]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -100000.0
+max_value = 100000.0
+step = 0.01
+value = 1.0
+
+[node name="HBoxAxis" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=1476195539]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxAxis" unique_id=1476195540]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "動作方向:"
+
+[node name="BtnAxisX" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxAxis" unique_id=1476195541]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+X"
+
+[node name="BtnAxisY" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxAxis" unique_id=1476195542]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+Y"
+
+[node name="BtnAxisZ" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxAxis" unique_id=1476195543]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+Z"
+
+[node name="HBoxPivotHeader" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=1476195544]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotHeader" unique_id=1476195545]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "回転中心:"
+
+[node name="BtnPickPivot" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotHeader" unique_id=1476195546]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "📍 マウスで指示"
+
+[node name="HBoxPivotValues" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=1476195547]
+layout_mode = 2
+
+[node name="LblPivotX" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotValues" unique_id=1476195548]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+text = "x"
+
+[node name="SpinPivotX" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotValues" unique_id=1476195549]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -100.0
+step = 0.001
+suffix = "m"
+
+[node name="LblPivotY" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotValues" unique_id=1476195550]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+text = "y"
+
+[node name="SpinPivotY" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotValues" unique_id=1476195551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -100.0
+step = 0.001
+suffix = "m"
+
+[node name="LblPivotZ" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotValues" unique_id=1476195552]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.6, 1, 1)
+text = "z"
+
+[node name="SpinPivotZ" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/HBoxPivotValues" unique_id=1476195553]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -100.0
+step = 0.001
+suffix = "m"
+
+[node name="SepControl" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=324910262]
+layout_mode = 2
+
+[node name="PlaybackContainer" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=324910263]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnPlay" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/PlaybackContainer" unique_id=324910264]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶ 再生"
+
+[node name="BtnPause" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/PlaybackContainer" unique_id=324910265]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⏸ 一時停止"
+
+[node name="BtnReset" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/PlaybackContainer" unique_id=324910266]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🔄 リセット"
+
+[node name="BtnAllReset" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=1403204599]
+unique_name_in_owner = true
+layout_mode = 2
+text = "オールリセット"
+
+[node name="StatusContainer" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox" unique_id=15809514]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblStatus" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/動作/MarginContainer/OpsBox/StatusContainer" unique_id=1907019884]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ステータス: 停止中"
+
+[node name="作成" type="ScrollContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer" unique_id=1535718656]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成" unique_id=1535718658]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="OpsBoxCreate" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer" unique_id=1535718657]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="BtnImportImage" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=1855708118]
+unique_name_in_owner = true
+layout_mode = 2
+text = "🖼️ PNG画像取込"
+
+[node name="CheckHideExisting" type="CheckBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=578678549]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "既存モデル（表示）"
+
+[node name="BtnInsertCreatedPart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=1890541268]
+unique_name_in_owner = true
+layout_mode = 2
+text = "➕ 作業空間に挿入"
+
+[node name="SepCreate1" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=81923753]
+layout_mode = 2
+
+[node name="HBoxCreateParent" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=987123456]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateParent" unique_id=745123987]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "グループ:"
+
+[node name="OptionCreateParent" type="OptionButton" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateParent" unique_id=654321987]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxCreatedActions" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=849321001]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnCopyCreatedPart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreatedActions" unique_id=429222688]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "📋 コピー"
+
+[node name="BtnDeleteCreatedPart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreatedActions" unique_id=429222687]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "🗑️ 削除"
+
+[node name="BtnUndoDeleteCreatedPart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreatedActions" unique_id=429222689]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "↩ 戻す"
+
+[node name="HBoxCreateName" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=631181174]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateName" unique_id=375045863]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "名前:"
+
+[node name="LineEditCreateName" type="LineEdit" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateName" unique_id=34565645]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "created_part"
+
+[node name="BtnRenameCreatedPart" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateName" unique_id=948372615]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "✏️ 変更"
+
+[node name="SepCreate2" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=81923754]
+layout_mode = 2
+
+[node name="HBoxCreateColor" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=1976583884]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateColor" unique_id=1307712457]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "カラー:"
+
+[node name="ColorPickerCreate" type="ColorPickerButton" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateColor" unique_id=1955152183]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.2, 0.6, 1, 1)
+
+[node name="HBoxCreateDepth" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=426449940]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateDepth" unique_id=979769098]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "奥行き(Z):"
+
+[node name="SpinCreateDepth" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateDepth" unique_id=681564289]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.001
+max_value = 10.0
+step = 0.001
+value = 0.1
+
+[node name="BtnResetCreateDepth" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateDepth" unique_id=812938471]
+unique_name_in_owner = true
+layout_mode = 2
+flat = true
+text = "↺"
+
+[node name="HBoxCreateSize" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=1921921160]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateSize" unique_id=817021335]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "全体サイズ:"
+
+[node name="SpinCreateSize" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateSize" unique_id=1285361504]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.001
+max_value = 10.0
+step = 0.001
+value = 1.0
+
+[node name="BtnResetCreateSize" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateSize" unique_id=812938472]
+unique_name_in_owner = true
+layout_mode = 2
+flat = true
+text = "↺"
+
+[node name="HBoxCreateTolerance" type="HBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=1223658169]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateTolerance" unique_id=107508448]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "直線化精度:"
+
+[node name="SpinCreateTolerance" type="SpinBox" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateTolerance" unique_id=186256357]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 20.0
+step = 0.1
+value = 1.0
+
+[node name="BtnResetCreateTolerance" type="Button" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate/HBoxCreateTolerance" unique_id=812938473]
+unique_name_in_owner = true
+layout_mode = 2
+flat = true
+text = "↺"
+
+[node name="SepCreate3" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=81923755]
+layout_mode = 2
+
+[node name="ContainerCreatePos" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=111222333]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ContainerCreateRot" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=444555666]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ContainerCreateScale" type="VBoxContainer" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter/TabContainer/作成/MarginContainer/OpsBoxCreate" unique_id=666777888]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SepPersist" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=324910257]
+layout_mode = 2
+
+[node name="Sep3" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=1499733881]
+layout_mode = 2
+
+[node name="Sep4" type="HSeparator" parent="UILayer/UIPanel/MarginContainer/ScrollContainer/VBoxOuter" unique_id=1512737417]
+layout_mode = 2
+
+[node name="ImageFileDialog" type="FileDialog" parent="UILayer" unique_id=499469786]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(600, 400)
+ok_button_text = "開く"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png ; PNG Images")
+
+[node name="BtnRestoreMenu" type="Button" parent="UILayer" unique_id=827720372]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 142.0
+offset_bottom = 44.0
+tooltip_text = "メニューを展開 (M)"
+text = "▶ メニュー表示"
+

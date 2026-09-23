@@ -1,0 +1,272 @@
+[gd_scene format=4]
+
+[ext_resource type="Script" path="res://scripts/assembly_importer.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/motion_rotary.gd" id="2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhq8v"]
+resource_name = "material_0"
+albedo_color = Color(0.2375, 0.95, 0.2375, 1)
+metallic = 0.1
+roughness = 0.4
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_16smo"]
+resource_name = "parts_parts_parts_mesh"
+_surfaces = [{
+"aabb": AABB(-0.16613588, -0.10934183, -0.051, 0.33227175, 0.21868366, 0.051),
+"attribute_data": PackedByteArray("Lf+77EjWu+w91CviMORC0y3/u+w91CviAADDQ///w0P//0tLAAA8PP//PDz//8NDMORC0///QtMt/7vsAABLS///S0v//9JSAADSUv//0lL//1paAABaWv//Wlr//+FhAAC0NP//tDT//zw8AAAtLf//LS3//7Q0XuNl0TDkQtM91CviPdQr4jHS7eAbzrLIPdQr4hvOssjsztTGmdvfql7jZdE91Cvimdvfqj3UK+LsztTGAAAPD///Dw///5YW///DQwAAw0MAADw8wSsr4rYpu+zRALvswSsr4tEAu+zOG0LT//9LSwAAS0sAAMND///SUgAA0lIAAEtL//9aWgAAWloAANJS0QC77AAAQtPOG0LT//88PAAAPDwAALQ0//+0NAAAtDQAAC0t//+WFgAAlhYAAA8PwSsr4s4bQtOgHGXR4zGyyM0t7eDBKyviEjHUxuMxssjBKyviwSsr4qAcZdFlJN+qEjHUxsErK+JlJN+qAADhYf//4WH//2lpF/KIj67xBJKZ29+qr+j/fxfyiI/4x6ikAABpaf//aWn///BwAADwcP//8HD//3h4mdvfquzO1Mb4x6ikAACHB///hwf//w8PF/KIj5nb36r4x6ikAAAAAP//AAD//4cH///wcAAA8HAAAGlp//9paQAAaWkAAOFh//94eAAAeHgAAPBwZSTfqlAOBJLnDYiPBjiopOcNiI9PF/9////hYQAA4WEAAFpa//8PDwAADw8AAIcHBjiopBIx1MZlJN+q//+HBwAAhwcAAAAABjiopGUk36rnDYiPMdLt4P9/JOcbzrLIAACWFv//lhb//x4eMdLt4K2D////fyTnAAClJf//pSX//y0tAAAeHv//Hh7//6Ul//8tLQAALS0AAKUl4zGyyP9/JOfNLe3g//+lJQAApSUAAB4e/38k51F8///NLe3g//8eHgAAHh4AAJYW"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AQACAAAABAAFAAMABwAIAAYACgALAAkADQAOAAwAEAARAA8AEwAUABIAFgAXABUAGQAaABgAHAAdABsAHwAgAB4AIgAjACEAJQAmACQAKAApACcAKwAsACoALgAvAC0AMQAyADAANAA1ADMANwA4ADYAOgA7ADkAPQA+ADwAQABBAD8AQwBEAEIARgBHAEUASQBKAEgATABNAEsATwBQAE4AUgBTAFEAVQBWAFQAWABZAFcAWwBcAFoAXgBfAF0AYQBiAGAAZABlAGMAZwBoAGYAagBrAGkAbQBuAGwAcABxAG8AcwB0AHIAdgB3AHUAeQB6AHgAfAB9AHsAfwCAAH4AggCDAIEAhQCGAIQAiACJAIcAiwCMAIoAjgCPAI0AkQCSAJAAlACVAJMAlwCYAJYAmgCbAJkAnQCeAJwAoAChAJ8AowCkAKIApgCnAKUAqQCqAKgArACtAKsArwCwAK4AsgCzALEA"),
+"material": SubResource("StandardMaterial3D_jhq8v"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 180,
+"vertex_data": PackedByteArray("oQGGJgAA//9sU4YmAAD//4NXpjsAAP//nTd5WQAA//+hAYYmAAD//4NXpjsAAP//oQGGJv//mf6hAYYmAACZ/gAAeVkAAJn+bFOGJv//VNVsU4YmAABU1aEBhiYAAFTVnTd5WQAA//8AAHlZAAD//6EBhiYAAP//AAB5Wf//VNUAAHlZAABU1Z03eVkAAFTVnTd5Wf//Lu+dN3lZAAAu70A5M10AAC7vQDkzXf//cfdAOTNdAABx98pIP6oAAHH3g1emO///08CDV6Y7AADTwGxThiYAANPAmlsiPv//Bs2aWyI+AAAGzYNXpjsAAAbNQDkzXQAA//+dN3lZAAD//4NXpjsAAP//g1emOwAA//+aWyI+AAD//8djmW4AAP//g1emOwAA///HY5luAAD//yViVHIAAP//ykg/qgAA//9AOTNdAAD//4NXpjsAAP//ykg/qgAA//+DV6Y7AAD//yViVHIAAP//JWJUcv//a8MlYlRyAABrw8djmW4AAGvDoQGGJgAAVNWhAYYm//9U1WxThib//1TVg1emO///AIBsU4Ym//8AgKEBhib//wCAg1emO///AIChAYYm//8AgJ03eVn//wCAAAB5WQAAmf4AAHlZ//+Z/qEBhib//5n+nTd5WQAAVNWdN3lZ//9U1QAAeVn//1TVQDkzXQAALu9AOTNd//8u7503eVn//y7voQGGJv//AIAAAHlZ//8AgJ03eVn//wCAbFOGJgAA08BsU4Ym///TwINXpjv//9PAg1emOwAABs2DV6Y7//8GzZpbIj7//wbNx2OZbgAAa8PHY5lu//9rwyViVHL//2vDg1emO///AICdN3lZ//8AgEA5M13//wCAx2OZbv//AICaWyI+//8AgINXpjv//wCAJWJUcv//AIDHY5lu//8AgINXpjv//wCAg1emO///AIBAOTNd//8AgMpIP6r//wCAJWJUcv//AICDV6Y7//8AgMpIP6r//wCAykg/qv//nuXKSD+qAACe5aAc9dsAAJ7lzhvt4AAA//+gHPXbAAD//8pIP6oAAP//ni7//wAA///OG+3gAAD//wxwrbYAAP//oBz12///8/igHPXbAADz+M4b7eAAAPP4zhvt4P//0urOG+3gAADS6p4u//8AANLqykg/qgAA//8lYlRyAAD//wxwrbYAAP//DHCttv//58AMcK22AADnwCViVHIAAOfAzhvt4AAA///KSD+qAAD//wxwrbYAAP//ni7/////VcieLv//AABVyAxwrbYAAFXIzhvt4AAA8/jOG+3g///z+KAc9dv///P4oBz12wAAnuWgHPXb//+e5cpIP6r//57lni7//wAA0uqeLv/////S6s4b7eD//9Lqykg/qv//AICgHPXb//8AgM4b7eD//wCADHCttv//AIDOG+3g//8AgJ4u/////wCAykg/qgAAcffKSD+q//9x90A5M13//3H3JWJUcgAA58AlYlRy///nwAxwrbb//+fADHCttv//AIAlYlRy//8AgMpIP6r//wCADHCttgAAVcgMcK22//9VyJ4u/////1XIDHCttv//AIDKSD+q//8AgM4b7eD//wCAmlsiPgAA/////7UxAAD//8djmW4AAP//x2OZbv//sM/HY5luAACwz///tTEAALDPmlsiPgAA//+i+AAAAAD/////tTEAAP//ovgAAP//jtui+AAAAACO25pbIj4AAI7b//+1Mf//fsD//7UxAAB+wKL4AAAAAH7AmlsiPgAAjtuaWyI+//+O26L4AAD//47bx2OZbv//AID//7Ux//8AgJpbIj7//wCAovgAAAAAfsCi+AAA//9+wP//tTH//37A//+1Mf//AICi+AAA//8AgJpbIj7//wCA//+1MQAAsM///7Ux//+wz8djmW7//7DP/3/+//9//v//f/7//3/+//9//v//f/7/xUB0fsVAdH7FQHR+VFVUVVRVVFVUVVRV/3/+//9//v//f/7/VNWqKlTVqipU1aoqKu+VNyrvlTcq75U3FPeKOxT3ijsU94o7r3GeHK9xnhyvcZ4cL1ugSS9boEkvW6BJ/3/+//9//v//f/7//3/+//9//v//f/7//3/+//9//v//f/7//3/+//9//v//f/7//3/+//9//v//f/7/RrAhGEawIRhGsCEYVFVUVVRVVFVUVVRVUlWqqgAAAIAAAACAUlWqqgAAAIBSVaqqxUB0fsVAdH7FQHR+VNWqKlTVqipU1aoqKu+VNyrvlTcq75U3AAAAgAAAAIBSVaqqr3GeHK9xnhyvcZ4cL1ugSS9boEkvW6BJRrAhGEawIRhGsCEYUlWqqlJVqqpSVaqqUlWqqlJVqqpSVaqqUlWqqlJVqqpSVaqqUlWqqlJVqqoAAACAUlWqqlJVqqoAAACA4Ew/ZuBMP2bgTD9m/3/+//9//v//f/7//3/+//9//v//f/7/tEOTeLRDk3i0Q5N4G+uONRvrjjUb6441/3/+//9//v//f/7/JnGwHSZxsB0mcbAd/3/+//9//v//f/7/UcAmIFHAJiBRwCYgtEOTeLRDk3i0Q5N44Ew/ZuBMP2bgTD9mG+uONRvrjjUb6441AAAAgFJVqqpSVaqqAAAAgFJVqqpSVaqqFPeKOxT3ijsU94o7JnGwHSZxsB0mcbAdAAAAgFJVqqoAAACAUcAmIFHAJiBRwCYgAAAAgAAAAIBSVaqq/3/+//9//v//f/7/1c3rJtXN6ybVzesm/3/+//9//v//f/7/1lFRXNZRUVzWUVFcXHRGF1x0RhdcdEYX1lFRXNZRUVzWUVFcUlWqqgAAAIBSVaqqXHRGF1x0RhdcdEYXAAAAgAAAAIBSVaqq1c3rJtXN6ybVzesm")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tavec"]
+resource_name = "material_1"
+albedo_color = Color(0.95, 0.2375, 0.2375, 1)
+metallic = 0.1
+roughness = 0.4
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8445t"]
+resource_name = "parts_parts_parts_mesh3"
+_surfaces = [{
+"aabb": AABB(-0.06031746, -0.06031746, -0.051, 0.12063492, 0.12063492, 0.051),
+"attribute_data": PackedByteArray("//9HsOjsZvFL5///AADbNv//2zb//yRJAAAkSf//JEn//21b//9HsEvn////f0ew//8kSQAAJEkAANs2sxj//xYTZvEAAEew//9tWwAAbVsAACRJ///bNgAA2zYAAJIk/39HsLMY//8AAEewAABtW///bVv//7ZtHsH/f///R7D/f0ew/39HsAAAR7DgPv9///+2bQAAtm0AAG1bS+f//7OY////f0ewAACSJP//kiT//9s2AABJEv//SRL//5Ik/39HsEtn//+zGP////+SJAAAkiQAAEkSAAAAAP//AAD//0kS//9JEgAASRIAAAAA"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AQACAAAABAAFAAMABwAIAAYACgALAAkADQAOAAwAEAARAA8AEwAUABIAFgAXABUAGQAaABgAHAAdABsAHwAgAB4AIgAjACEAJQAmACQAKAApACcAKwAsACoALgAvAC0AMQAyADAANAA1ADMANwA4ADYAOgA7ADkA"),
+"material": SubResource("StandardMaterial3D_tavec"),
+"name": "material_1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("AABvnwAA//8sJjEdAAD//2cxAAAAAP//ZzEAAP//cfVnMQAAAABx9SwmMR0AAHH1LCYxHf//y/csJjEdAADL9wAAb58AAMv3AABvnwAA//9nMQAAAAD/////b58AAP//LCYxHQAAcfUsJjEd//9x9WcxAAD//3H1ZzEAAP//AIAsJjEd//8AgAAAb5///wCAAABvnwAAy/cAAG+f///L9ywmMR3//8v3ZzEAAAAAVNVnMQAA//9U1ZfOAAD//1TV//9vn///AIBnMQAA//8AgAAAb5///wCAAABvn///FeYAAG+fAAAV5sB9//8AABXmwH3//wAA//8AAG+fAAD/////b58AAP////9vn///AIAAAG+f//8AgMB9/////wCAwH3//wAAFebAff////8V5gAAb5///xXmZzEAAAAA//+XzgAAAAD/////b58AAP//l84AAP//VNWXzgAAAABU1WcxAAAAAFTV//9vn///6MD//2+fAADowJfOAAAAAOjA//9vn///AICXzgAA//8AgGcxAAD//wCAl84AAAAA6MCXzgAA///owP//b5///+jAwH3/////SsjAff//AABKyP//b58AAErI//9vnwAASsj//2+f//9KyMB9/////0rI/3/+//9//v//f/7/b0UfdW9FH3VvRR91R0Rsd0dEbHdHRGx3/3/+//9//v//f/7/b0UfdW9FH3VvRR91AAAAgFJVqqoAAACAR0Rsd0dEbHdHRGx3VFVUVVRVVFVUVVRVAAAAgAAAAIAAAACAr+ZWM6/mVjOv5lYz/3/+//9//v//f/7/AAAAgAAAAIAAAACAr+ZWM6/mVjOv5lYz/3/+//9//v//f/7/VFVUVVRVVFVUVVRVH3G/HR9xvx0fcb8dAAAAgAAAAIAAAACAH3G/HR9xvx0fcb8dN8AcIDfAHCA3wBwgN8AcIDfAHCA3wBwg")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qj35l"]
+resource_name = "material_2"
+albedo_color = Color(0.2375, 0.2375, 0.95, 1)
+metallic = 0.1
+roughness = 0.4
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pp4g7"]
+resource_name = "parts_parts_parts_mesh5"
+_surfaces = [{
+"aabb": AABB(-0.027972223, -0.027972223, -0.181, 0.055944446, 0.055944446, 0.181),
+"attribute_data": PackedByteArray("VfYD4wPjVfbdyv//AABLS///S0v//9JS//8htf//3cpV9gPjAADSUv//0lL//1paAABaWv//Wlr//+FhVfYD493K///6nFX2AADDQ///w0P//0tLA+OoiVX2A+P6nFX2///SUgAA0lIAAEtLITX///scVfapCQPj//9aWgAAWloAANJSqQkD4wAA3coAACG1//9LSwAAS0sAAMND///DQwAAw0MAADw8BGNV9iE1//+pCQPjBGNV9qkJA+P7HKiJA+Ooif//IbVV9gPjAADhYf//4WH//2lpA+OoiVX2+pz//yG1AABpaf//aWn///Bw3cr/fwPjqIkhtf9/AADwcP//8HD//3h4AAAAAP//AAD//4cH///hYQAA4WEAAFpa//9paQAAaWkAAOFhqQkD4wAAIbX7HKiJ///wcAAA8HAAAGlpAAAhtakJ+pz7HKiJ//94eAAAeHgAAPBw3Ur/f/scqIkhNf9/3cr//yG1///6nFX2AAA8PP//PDz//8NDAAC0NP//tDT//zw8+pxV9qiJA+P/f93KAAAtLf//LS3//7Q0+pxV9v9/3cqoifqcAAClJf//pSX//y0t//88PAAAPDwAALQ0BGNV9t1K//8hNf////+0NAAAtDQAAC0t/3/dylZ2A+MEY1X2//8tLQAALS0AAKUl//+lJQAApSUAAB4eVnb6nP9/3coEY1X2A+OoifqcVfYhtf9/AACHB///hwf//w8P+pxV9qiJ+pwhtf9//3/dyv9/IbWoifqcAAAeHv//Hh7//6UlAACWFv//lhb//x4eqIn6nPqcqIkhtf9/AAAPD///Dw///5YW3Ur/fwRjVfb7HKiJ//+HBwAAhwcAAAAA//8PDwAADw8AAIcH//8eHgAAHh4AAJYW3Ur/f1Z2+pwEY1X2Vnb6nP9/IbX/f93K//+WFgAAlhYAAA8P3Ur/fwRjqIlWdvqc"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AQACAAAABAAFAAMABwAIAAYACgALAAkADQAOAAwAEAARAA8AEwAUABIAFgAXABUAGQAaABgAHAAdABsAHwAgAB4AIgAjACEAJQAmACQAKAApACcAKwAsACoALgAvAC0AMQAyADAANAA1ADMANwA4ADYAOgA7ADkAPQA+ADwAQABBAD8AQwBEAEIARgBHAEUASQBKAEgATABNAEsATwBQAE4AUgBTAFEAVQBWAFQAWABZAFcAWwBcAFoAXgBfAF0AYQBiAGAAZABlAGMAZwBoAGYAagBrAGkAbQBuAGwAcABxAG8AcwB0AHIAdgB3AHUAeQB6AHgAfAB9AHsAfwCAAH4AggCDAIEAhQCGAIQAiACJAIcAiwCMAIoAjgCPAI0AkQCSAJAAlACVAJMAlwCYAJYAmgCbAJkAnQCeAJwAoAChAJ8AowCkAKIApgCnAKUAqQCqAKgArACtAKsArwCwAK4AsgCzALEA"),
+"material": SubResource("StandardMaterial3D_qj35l"),
+"name": "material_2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 180,
+"vertex_data": PackedByteArray("URP2OQAA///2OVETAAD//0NqAAAAAP//9jlRE///q+n2OVETAACr6VET9jkAAKvpAAC7lQAA//8AAENqAAD//1ET9jkAAP//URP2Of//EPVRE/Y5AAAQ9QAAQ2oAABD1AABDav////8AAENqAAD//wAAu5UAAP//URP2OQAA//9DagAAAAD//wjGURMAAP//Q2oAAP//yN5DagAAAADI3vY5URMAAMje9jms7AAA//9RE/Y5AAD//wjGURMAAP//URP2OQAAq+lRE/Y5//+r6fY5URP//6vpQ2oAAP//AID2OVET//8AgFET9jn//wCAAABDagAAEPUAAENq//8Q9VET9jn//xD1URP2Of//AIAAAENq//8AgAAAu5X//wCA9jlREwAAyN72OVET///I3kNqAAD//8jeQ2oAAAAAVNVDagAA//9U1buVAAD//1TVCMZRE///AIBDagAA//8AgFET9jn//wCACMZRE///AIBRE/Y5//8AgPY5rOz//wCA9jms7AAA//8AALuVAAD//1ET9jkAAP//AAC7lf//EPUAALuVAAAQ9VETCMYAABD19jms7AAA//9REwjGAAD//wAAu5UAAP//URMIxv//q+lREwjGAACr6fY5rOwAAKvpQ2r//wAA///2OazsAAD//7uV//8AAP//9jms7P//x972OazsAADH3kNq//8AAMfeQ2r/////VNVDav//AABU1buV//8AAFTVAAC7lQAA//8AALuV/////wAAQ2r/////URMIxgAAEPVREwjG//8Q9QAAu5X//xD1URP2Of//AIAAALuV//8AgPY5rOz//wCA9jms7AAAq+n2Oazs//+r6VETCMb//6vpAAC7lf//AIBREwjG//8AgPY5rOz//wCAQ2r//wAAx95Dav/////H3vY5rOz//8feu5X/////AID2Oazs//8AgENq/////wCAQ2oAAAAA//+7lQAAAAD//wjGURMAAP//u5UAAP//VNW7lQAAAABU1UNqAAAAAFTVCMZRE///Bs0IxlETAAAGzbuVAAAAAAbNCMZREwAA//+s7PY5AAD/////Q2oAAP//rOz2Of///MWs7PY5AAD8xQjGURMAAPzFCMZREwAA/////0NqAAD//6zsCMYAAP////9Dav//dMH//0NqAAB0wazs9jkAAHTBu5UAAAAABs27lQAA//8GzQjGURP//wbNCMZRE///AIC7lQAA//8AgENqAAD//wCACMZREwAA/MUIxlET///8xazs9jn///zF//9Dav//AICs7PY5//8AgAjGURP//wCArOz2OQAAdMGs7PY5//90wf//Q2r//3TB//9DagAA/7///0Nq////v///u5X///+/rOwIxv//AID//0Nq//8AgAjGURP//wCA9jms7AAA//8IxlETAAD//7uV//8AAP//u5X/////Bc27lf//AAAFzQjGrOwAAAXNCMZREwAA//+s7AjGAAD//7uV//8AAP////9DagAA/////7uVAAD//6zsCMYAAP////+7lf///7///7uVAAD/v///Q2oAAP+/rOwIxv//dMGs7AjGAAB0wf//u5UAAHTBrOwIxgAA//8IxqzsAAD//7uV//8AAP//CMas7P///MUIxqzsAAD8xazsCMYAAPzFu5X/////AIAIxlET//8AgPY5rOz//wCAu5X//wAAVNW7lf////9U1UNq/////1TVCMas7AAABc0Ixqzs//8FzbuV/////wXN//+7lQAAdMH//7uV//90wazsCMb//3TBu5X/////AICs7AjG//8AgAjGURP//wCArOwIxv//AID//7uV//8AgP//Q2r//wCArOwIxgAA/MWs7AjG///8xQjGrOz///zFu5X/////AIAIxqzs//8AgKzsCMb//wCA/3/+//9//v//f/7/+koJavpKCWr6Sglq/3/+//9//v//f/7/nUXBdJ1FwXSdRcF0//8AQP//AED//wBA/3/+//9//v//f/7/L1CgXy9QoF8vUKBf/3/+//9//v//f/7/+koJavpKCWr6SglqAAAAgFJVqqpSVaqqnUXBdJ1FwXSdRcF0UlWqqlJVqqoAAACAL1CgXy9QoF8vUKBfVFVUVVRVVFVUVVRVAAAAgAAAAIBSVaqqAAAAgFJVqqoAAACA/3/+//9//v//f/7/wfRgOsH0YDrB9GA6/3/+//9//v//f/7/CeoENQnqBDUJ6gQ1/3/+//9//v//f/7/oN/QL6Df0C+g39AvVNWqKlTVqipU1aoq//8AQP//AED//wBAwfRgOsH0YDrB9GA6UlWqqgAAAIAAAACACeoENQnqBDUJ6gQ1AAAAgFJVqqoAAACAoN/QL6Df0C+g39AvAAAAgAAAAIAAAACA/3/+//9//v//f/7/VFVUVVRVVFVUVVRVL1ugSS9boEkvW6BJ/3/+//9//v//f/7/AGP8OQBj/DkAY/w5/3/+//9//v//f/7/M26XIzNulyMzbpcjL1ugSS9boEkvW6BJAAAAgAAAAIAAAACAAGP8OQBj/DkAY/w5AAAAgFJVqqoAAACAM26XIzNulyMzbpcjAIAAAACAAAAAgAAAUlWqqgAAAIAAAACA/3/+//9//v//f/7/n8nQJJ/J0CSfydAk/3/+//9//v//f/7//3/+//9//v//f/7/AIAAAACAAAAAgAAAlqPLEZajyxGWo8sR/3/+//9//v//f/7//bn/HP25/xz9uf8cAAAAgAAAAIAAAACAVNWqKlTVqipU1aoqn8nQJJ/J0CSfydAklqPLEZajyxGWo8sRAAAAgFJVqqoAAACAUlWqqlJVqqoAAACA/bn/HP25/xz9uf8cAAAAgFJVqqpSVaqq")
+}]
+blend_shape_mode = 0
+
+[node name="Assembly" type="Node3D" unique_id=1402491999]
+script = ExtResource("1")
+glb_file = "D:/workspace/godot/parts/godot_project/parts.glb"
+unpack_glb = false
+initial_transforms = {
+"bolt": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141, 0),
+"bolt-body": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01),
+"bolt-body_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"bolt-body_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"bolt-body_mesh_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+&"bolt-body_mesh_mesh_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"bolt-head": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"bolt-head_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"bolt-head_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"bolt-head_mesh_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+&"bolt-head_mesh_mesh_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"spana": Transform3D(1.044, 0, 0, 0, 1.044, 0, 0, 0, 1.044, 0.135, 0.116, 0),
+"spana_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"spana_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+"spana_mesh_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),
+&"spana_mesh_mesh_mesh_mesh": Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+}
+metadata/ground_visible = true
+metadata/ground_y = 0.0
+
+[node name="spana" type="Node3D" parent="." unique_id=996844580]
+transform = Transform3D(1.044, 0, 0, 0, 1.044, 0, 0, 0, 1.044, 0.135, 0.116, 0)
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1.044, 0, 0, 0, 1.044, 0, 0, 0, 1.044, 0.135, 0.116, 0)
+metadata/initial_position = Vector3(0.135, 0.116, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0.135, 0.116, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1.044, 0, 0, 0, 1.044, 0, 0, 0, 1.044, 0.135, 0.116, 0)
+
+[node name="spana_mesh" type="Node3D" parent="spana" unique_id=674069356]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="spana_mesh_mesh" type="Node3D" parent="spana/spana_mesh" unique_id=1548775132]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="spana_mesh_mesh_mesh" type="Node3D" parent="spana/spana_mesh/spana_mesh_mesh" unique_id=614944914]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="spana_mesh_mesh_mesh_mesh" type="MeshInstance3D" parent="spana/spana_mesh/spana_mesh_mesh/spana_mesh_mesh_mesh" unique_id=2097750963]
+mesh = SubResource("ArrayMesh_16smo")
+surface_material_override/0 = SubResource("StandardMaterial3D_jhq8v")
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MotionBehavior" type="Node" parent="spana" unique_id=2124839174]
+script = ExtResource("2")
+axis = Vector3(0, 0, 1)
+angle_min = 0.0
+angle_max = 30.0
+duration = 3.0
+loop = true
+ping_pong = true
+ease_type = 2
+pivot = Vector3(-0.131159, 0.020605, 0.004367)
+auto_start = false
+
+[node name="bolt" type="Node3D" parent="." unique_id=974692495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141, 0)
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141, 0)
+metadata/initial_position = Vector3(0, 0.141, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0.141, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.141, 0)
+
+[node name="bolt-head" type="Node3D" parent="bolt" unique_id=790435014]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-head_mesh" type="Node3D" parent="bolt/bolt-head" unique_id=365365729]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-head_mesh_mesh" type="Node3D" parent="bolt/bolt-head/bolt-head_mesh" unique_id=657535518]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-head_mesh_mesh_mesh" type="Node3D" parent="bolt/bolt-head/bolt-head_mesh/bolt-head_mesh_mesh" unique_id=342379657]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-head_mesh_mesh_mesh_mesh" type="MeshInstance3D" parent="bolt/bolt-head/bolt-head_mesh/bolt-head_mesh_mesh/bolt-head_mesh_mesh_mesh" unique_id=1446296101]
+mesh = SubResource("ArrayMesh_8445t")
+surface_material_override/0 = SubResource("StandardMaterial3D_tavec")
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-body" type="Node3D" parent="bolt" unique_id=1541242634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+metadata/initial_position = Vector3(0, 0, -0.01)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, -0.01)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+
+[node name="bolt-body_mesh" type="Node3D" parent="bolt/bolt-body" unique_id=1693620200]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-body_mesh_mesh" type="Node3D" parent="bolt/bolt-body/bolt-body_mesh" unique_id=707125906]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-body_mesh_mesh_mesh" type="Node3D" parent="bolt/bolt-body/bolt-body_mesh/bolt-body_mesh_mesh" unique_id=1395089644]
+metadata/generated_by_importer = true
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="bolt-body_mesh_mesh_mesh_mesh" type="MeshInstance3D" parent="bolt/bolt-body/bolt-body_mesh/bolt-body_mesh_mesh/bolt-body_mesh_mesh_mesh" unique_id=2073343700]
+mesh = SubResource("ArrayMesh_pp4g7")
+surface_material_override/0 = SubResource("StandardMaterial3D_qj35l")
+metadata/initial_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+metadata/initial_position = Vector3(0, 0, 0)
+metadata/initial_rotation = Vector3(0, 0, 0)
+metadata/glb_original_position = Vector3(0, 0, 0)
+metadata/glb_original_rotation = Vector3(0, 0, 0)
+metadata/glb_original_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MotionBehavior" type="Node" parent="bolt" unique_id=2060619552]
+script = ExtResource("2")
+axis = Vector3(0, 0, 1)
+angle_min = 0.0
+angle_max = 30.0
+duration = 3.0
+loop = true
+ping_pong = true
+ease_type = 2
+pivot = Vector3(0, 0, 0)
+auto_start = false

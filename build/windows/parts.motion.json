@@ -1,0 +1,36 @@
+{
+	"bolt": {
+		"angle_max": 30.0,
+		"angle_min": 0.0,
+		"axis": [
+			0.0,
+			0.0,
+			1.0
+		],
+		"duration": 3.0,
+		"ping_pong": true,
+		"pivot": [
+			0.0,
+			0.0,
+			0.0
+		],
+		"type": "rotary"
+	},
+	"spana": {
+		"angle_max": 30.0,
+		"angle_min": 0.0,
+		"axis": [
+			0.0,
+			0.0,
+			1.0
+		],
+		"duration": 3.0,
+		"ping_pong": true,
+		"pivot": [
+			-0.131158992648125,
+			0.0206049997359514,
+			0.0043669999577105
+		],
+		"type": "rotary"
+	}
+}
